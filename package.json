@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "OutZeroApi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexisHE969/outZero.git"
+  },
+  "author": "AlexisH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexisHE969/outZero/issues"
+  },
+  "homepage": "https://github.com/AlexisHE969/outZero#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
