@@ -48,10 +48,12 @@ exports.read_a_task = function(req, res) {
 
 
 exports.update_a_task = function(req, res) {
-  Task.updateById(req.params.taskId, new Task(req.body), function(err, task) {
-    if (err)
+  Task.updateById(table_db,req.params.taskId, new Task(req.body), function(err, task) {
+    if (err){
       res.send(err);
-    res.json(task);
+    }else{
+      res.json(task);
+    }    
   });
 };
 
@@ -59,9 +61,11 @@ exports.update_a_task = function(req, res) {
 exports.delete_a_task = function(req, res) {
 
 
-  Task.remove( req.params.taskId, function(err, task) {
-    if (err)
+  Task.remove(table_db,req.params.taskId, function(err, task) {
+    if (err){
       res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    }else{
+      res.json({ message: 'Task successfully deleted' });
+    }
   });
 };
