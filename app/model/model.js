@@ -1,12 +1,8 @@
 'user strict';
 var sql = require('./db.js');
 
-//Task object constructor
-var Task = function(task){
-    this.task = task.task;
-    this.status = task.status;
-    this.created_at = new Date(); 
-};
+//Task object
+var Task = function(){};
 
 Task.createTask = function (table,newTask, result) {    
         sql.query("INSERT INTO "+ table +" set ?", newTask, function (err, res) {
@@ -20,8 +16,8 @@ Task.createTask = function (table,newTask, result) {
             }
         });           
 };
-Task.getTaskById = function (table,taskId, result) {
-        sql.query("Select "+ table +" from tasks where id = ? ", taskId, function (err, res) {             
+Task.getTaskById = function (table,taskId, result,id) {
+        sql.query("Select * from "+ table +" where "+ id +" = ? ", taskId, function (err, res) {             
             if(err) {
                 console.log("error: ", err);
                 result(err, null);

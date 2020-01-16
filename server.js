@@ -18,8 +18,6 @@ mc.connect();
 
 app.listen(port);
 
-console.log('API server started on: ' + port);
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
