@@ -1,10 +1,9 @@
 'use strict';
 
-var Task = require('../model/agendaModel.js');
-
+var Task = require('../model/model.js/index.js');
+var table_db = 'citas';
 exports.list_all_tasks = function(req, res) {
-  Task.getAllTask(function(err, task) {
-
+  Task.getAllTask(table_db,function(err, task) {
     console.log('controller')
     if (err)
       res.send(err);
@@ -21,26 +20,29 @@ exports.create_a_task = function(req, res) {
   //handles null error 
    if(!new_task.task || !new_task.status){
 
-            res.status(400).send({ error:true, message: 'Please provide task/status' });
+    res.status(400).send({ error:true, message: 'Please provide task/status' });
 
-        }
-else{
-  
-  Task.createTask(new_task, function(err, task) {
+  }else{
     
-    if (err)
-      res.send(err);
-    res.json(task);
-  });
-}
+    Task.createTask(table_db,new_task, function(err, task) {
+      if (err){
+        res.send(err);
+      }else{
+        res.json(task);
+      }
+    });
+    
+  }
 };
 
 
 exports.read_a_task = function(req, res) {
-  Task.getTaskById(req.params.taskId, function(err, task) {
-    if (err)
+  Task.getTaskById(table_db,req.params.taskId, function(err, task) {
+    if (err){
       res.send(err);
-    res.json(task);
+    }else{
+      res.json(task);
+    }
   });
 };
 
